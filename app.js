@@ -10,11 +10,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser("shh! some secret string"));
 app.use(csrf("this_should_be_32_character_long", ["POST", "PUT", "DELETE"]));
 
-const path = require("path");
-
-app.set("view engine", "ejs");
-
-app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
   const overduetodos = await Todo.overdue();
@@ -33,6 +28,7 @@ app.get("/", async (request, response) => {
     response.json({ overduetodos, duetodaytodos, duelatertodos, completed });
   }
 });
+
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
 
