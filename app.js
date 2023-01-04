@@ -33,7 +33,6 @@ app.get("/", async (request, response) => {
     response.json({ overduetodos, duetodaytodos, duelatertodos, completed });
   }
 });
-
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
 
