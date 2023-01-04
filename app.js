@@ -36,11 +36,10 @@ app.get("/", async (request, response) => {
 
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
-
   try {
     const todos = await Todo.findAll({ order: [["id", "ASC"]] });
     return response.json(todos);
-  } catch (error) {
+  } catch (error){
     console.log(error);
     return response.status(422).json(error);
   }
