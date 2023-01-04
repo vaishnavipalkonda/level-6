@@ -17,9 +17,6 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
-  const overduetodos = await Todo.overdue();
-  const duetodaytodos = await Todo.dueToday();
-  const duelatertodos = await Todo.dueLater();
   const completed = await Todo.completedTodos();
   if (request.accepts("html")) {
     response.render("index", {
