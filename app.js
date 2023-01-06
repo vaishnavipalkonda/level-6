@@ -56,18 +56,6 @@ app.get("/todos/:id", async function (request, response) {
   }
 });
 
-app.post("/todos", async function (request, response) {
-  try {
-    // eslint-disable-next-line no-unused-vars
-    //const todo =
-    await Todo.addTodo(request.body);
-    //return response.json(todo);
-    return response.redirect("/");
-  } catch (error) {
-    console.log(error);
-    return response.status(422).json(error);
-  }
-});
 
 app.put("/todos/:id", async function (request, response) {
   const todo = await Todo.findByPk(request.params.id);
