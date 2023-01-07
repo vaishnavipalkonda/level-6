@@ -66,7 +66,7 @@ describe("Todo test suite", () => {
     const csrfToken = extractCsrfToken(res);
     const response = await agent.post("/todos").send({
       title: "Buy milk",
-      
+      dueDate: new Date().toISOString(),
       completed: false,
       _csrf: csrfToken,
     });
