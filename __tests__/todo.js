@@ -13,7 +13,7 @@ function extractCsrfToken(res) {
 }
 
 const login = async (agent, username, password) => {
-  let res =  agent.get("/login");
+  let res = await agent.get("/login");
   let csrfToken = extractCsrfToken(res);
   res = await agent.post("/session").send({
     email: username,
@@ -64,12 +64,8 @@ describe("Todo test suite", () => {
     await login(agent, "user.a@test.com", "123456");
     const res = await agent.get("/todos");
     const csrfToken = extractCsrfToken(res);
-    const response = await agent.post("/todos").send({
-      title: "Buy milk",
-      dueDate: new Date().toISOString(),
-      completed: false,
-      _csrf: csrfToken,
-    });
+    
+    
     expect(response.statusCode).toBe(302);
   });
 
