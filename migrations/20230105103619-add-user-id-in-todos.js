@@ -14,7 +14,7 @@ module.exports = {
     });
 
     await queryInterface.addConstraint("Todos", {
-      
+      fields: ["userId"],
       type: "foreign key",
       references: {
         table: "Users",
